@@ -111,6 +111,7 @@ function fight (enemy){
 
 
 //hello
+//hello
 //function if enemy is killed
 // let deadEnemies = enemies
 // deadEnemies = enemies.filter(function (e){
