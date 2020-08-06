@@ -103,7 +103,7 @@ function fight (enemy){
             player1.inventory.push(enemy.item)
             player1.hp = (player1.hp + enemy.bonushp)
             enemies.filter(function (e){
-                return e.hp > 0
+                return e.hp.length > 0
             })
         }    
     }
