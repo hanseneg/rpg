@@ -25,10 +25,10 @@ class Enemy {
         this.item = ''
     }
 }
-const joker = new Enemy("Joker", 5, 5, 10)
-const penguin = new Enemy("Penguin", 5, 3, 15)
-const bane = new Enemy("Bane", 5, 6, 25)
-const poisonIvy = new Enemy("Poison Ivy", 1, 1, 50)
+const joker = new Enemy("Joker", 50, 40, 10)
+const penguin = new Enemy("Penguin", 45, 30, 15)
+const bane = new Enemy("Bane", 50, 55, 25)
+const poisonIvy = new Enemy("Poison Ivy", 60, 60, 50)
 
 joker.item = 'gun'
 penguin.item = 'umbrella'
@@ -40,6 +40,11 @@ let enemies = [joker, penguin, bane, poisonIvy]
 
 //while loop to keep asking the keyIn question
 while(isAlive){
+    if(enemies.length === 0){
+        console.log('congrats. you won the game!')
+        isAlive = false
+        break;
+    }
     const action = readline.keyIn('Do you want to [w] walk, [p] print inventory, or [q] quit?', {limit: 'wqp'})
     if(action === 'w'){
         walk()
@@ -48,9 +53,6 @@ while(isAlive){
     }else if(action === 'q'){
         isAlive = false
         console.log('you quit the game')
-    }else if(enemies.length === 0){
-        console.log('congrats. you won the game!')
-        isAlive = false
     }
 }
 //walk function with random enemy generator
@@ -102,44 +104,10 @@ function fight (enemy){
             console.log('good job you killed the enemy and took their ' + enemy.item + '.' + ' keep going')
             player1.inventory.push(enemy.item)
             player1.hp = (player1.hp + enemy.bonushp)
-            enemies.filter(function (e){
-                return e.hp.length > 0
+            enemies = enemies.filter(function (e){
+                return e.hp > 0
             })
         }    
     }
 }
-
-
-
-//function if enemy is killed
-// let deadEnemies = enemies
-// deadEnemies = enemies.filter(function (e){
-//     return e.hp > 0;
-// })
-
-//win the game
-//   function victory(){
-//     if(deadEnemies.length === 0){
-//         console.log('congrats. you won the game!')
-//         isAlive = false
-//     }
-// }
-
-
-//  function dead (){
-//     if(joker.hp <= 0){
-
-//     }else if(penguin.hp <= 0){
-//     }else if(bane.hp <= 0){
-//     }else{
-//     }
-// } 
-
-
-//filteredEnemies = enemies.filter(enemy => enemy.hp > 0)
-
-
-// if( joker.hp <=0 && penguin.hp <=0 && bane.hp <= 0 && poisonIvy.hp <= 0){
-            
-//     isAlive = false
-// } 
+//enemies = enemies.filter((e) => e.hp > 0)
